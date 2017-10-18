@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.asiainfo.core.mapper.OrMerchantMapper" >
+  <resultMap id="BaseResultMap" type="com.asiainfo.core.model.OrMerchant" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="merchant_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="chargerName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="telphone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="comment" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, merchant_name, address, chargerName, telphone, comment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from or_merchant
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from or_merchant
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.asiainfo.core.model.OrMerchant" >
+    insert into or_merchant (id, merchant_name, address, 
+      chargerName, telphone, comment
+      )
+    values (#{id,jdbcType=INTEGER}, #{merchantName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{chargername,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.asiainfo.core.model.OrMerchant" >
+    insert into or_merchant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="merchantName != null" >
+        merchant_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="chargername != null" >
+        chargerName,
+      </if>
+      <if test="telphone != null" >
+        telphone,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantName != null" >
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="chargername != null" >
+        #{chargername,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.asiainfo.core.model.OrMerchant" >
+    update or_merchant
+    <set >
+      <if test="merchantName != null" >
+        merchant_name = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="chargername != null" >
+        chargerName = #{chargername,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.asiainfo.core.model.OrMerchant" >
+    update or_merchant
+    set merchant_name = #{merchantName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      chargerName = #{chargername,jdbcType=VARCHAR},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
